@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-// Function to print unique numbers in the array
 void printUniqueNumbers(int arr[], int n) {
     cout << "Unique numbers are: ";
     for (int i = 0; i < n; i++) {

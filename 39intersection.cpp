@@ -7,7 +7,6 @@ void printIntersection(int arr1[], int n1, int arr2[], int n2) {
         for (int j = 0; j < n2; j++) {
             if (arr1[i] == arr2[j]) {
                 cout << arr1[i] << " ";
-                arr2[j] = -1;
                 break;
             }
         }

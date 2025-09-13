@@ -35,6 +35,10 @@ using namespace std;
     int target=13;
 
     vector<int> ans=pairSum(nums, target);
-    cout<<ans[0]<<", "<<ans[1]<<endl;
+    if(ans.size() == 2){
+        cout<<ans[0]<<", "<<ans[1]<<endl;
+    } else {
+        cout << "No pair found" << endl;
+    }
     return 0;
  }

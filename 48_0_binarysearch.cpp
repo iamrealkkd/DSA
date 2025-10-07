@@ -26,10 +26,11 @@ int binarySearch(vector<int>arr, int target){
 }
 
 int main(){
-    vector<int> arr = {10,5,9,6};
+    vector<int> arr = {1,3,5,7,9};
     int target = 9;
 
     cout<<binarySearch(arr, target);
 
+    return 0;
     
 }

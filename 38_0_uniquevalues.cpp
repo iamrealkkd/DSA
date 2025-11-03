@@ -14,7 +14,7 @@ void printUniqueNumbers(int arr[], int n) {
             if (count == 1) {
             cout << arr[i] << " ";
         }
-        }
+    }
         
 }
 

@@ -2,7 +2,7 @@
 using namespace std;
 int main(){
 
-    vector<int>kkd;
+    vector<int> kkd;
     kkd.push_back(9);
     kkd.push_back(2);
     kkd.push_back(7);

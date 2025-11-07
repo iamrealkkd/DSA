@@ -12,6 +12,12 @@ int  main(){
 
  cout<<endl;
 
+  vector<int>::reverse_iterator in;
+
+ for(auto in = jin.rbegin(); in !=  jin.rend(); in++){
+    cout<< *(in) <<" ";
+ }
+
  return 0;
 
 }

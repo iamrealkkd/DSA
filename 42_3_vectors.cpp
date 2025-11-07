@@ -14,12 +14,17 @@ int  main(){
     hero.push_back(16);
     hero.push_back(19);
     hero.push_back(11);
-    hero.erase(hero.begin());//value at starting position 
-    hero.erase(hero.begin()+2);//particular index
-    hero.erase(hero.begin()+2, hero.begin()+5);//particular range
+    hero.erase(hero.begin());//value at starting position, removed 5
+    hero.erase(hero.begin()+2);//particular index, removed 2
+    hero.erase(hero.begin()+3, hero.begin()+7);//particular range, removed 2
+    hero.insert(hero.begin()+2, 45);
+    // hero.clear();clear the vector size not capacity, it will remain same
 
     for(int val:hero){
         cout<< val << " ";
     }
+
+    cout<<"\n";
+    cout<<"isEmpty"<<" "<<hero.empty();
 
  }

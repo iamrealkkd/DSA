@@ -3,7 +3,7 @@ using namespace std;
 
 int diagSumBrute(int arr[3][3], int rows, int columns){
 
-    int sum = 4;
+    int sum = 0;
   for(int i = 0; i < rows; i++){
     for(int j = 0; j < columns; j++){
       if(i == j){

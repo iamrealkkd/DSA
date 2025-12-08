@@ -6,8 +6,8 @@ using namespace std;
         cout << n << " ";
         return;
       }
-      print(n-2);
       cout << n << " ";
+      print(n-2);
     }
 int main(){
     int N = 13;

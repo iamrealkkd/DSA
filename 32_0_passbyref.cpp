@@ -15,7 +15,7 @@ int main(){
 
     changeArray(arr,5);
 
-    cout<<"In main function after changing the array values: "<<endl;
+    cout<<"In main function after changing the array values: "<<endl;//arrays are pass by reference
 
     for(int i = 0; i < 5; i++){
         cout << arr[i] <<" ";

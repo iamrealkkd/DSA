@@ -1,0 +1,29 @@
+#include <iostream>
+#include <climits>
+
+using namespace std;
+
+int main() {
+
+    int smallest = INT_MAX;
+    int num[5];
+    int index = -1;
+
+    cout << "Enter 5 numbers:" << endl;
+
+    for (int i = 0; i < 5; i++) {
+        cin >> num[i];
+    }
+
+    for (int i = 0; i < 5; i++) {
+        if (num[i] < smallest) {
+            smallest = num[i];
+            index = i;
+        }
+    }
+
+    cout << "The smallest number is " << smallest << endl;
+    cout << "The index of the smallest number is " << index << endl;
+
+    return 0;
+}

@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+    int n = 5;
+    int arr[5] = {1, 2, 3, 4, 5};
+
+    // starting index of subarray
+    for(int st = 0; st < n; st++){
+
+        // ending index of subarray
+        for(int end = st; end < n; end++){
+
+            // print elements from start to end
+            for(int i = st; i <= end; i++){
+                cout << arr[i];
+            }
+
+            cout << " ";
+        }
+
+        cout << endl;
+    }
+
+    return 0;
+}

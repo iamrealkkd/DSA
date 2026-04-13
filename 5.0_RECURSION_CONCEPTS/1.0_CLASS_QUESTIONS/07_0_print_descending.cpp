@@ -8,7 +8,8 @@ void print(int n){
     }
     cout << n << " ";
     print(n-1);  
-    }
+  }
+
 int main(){
     print(7);
 }

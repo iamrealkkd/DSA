@@ -1,89 +1,111 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Recursive function to generate all unique subsets
-// nums -> remaining elements to process
-// op -> current subset being formed
-// mp -> map to keep track of subsets already added (to avoid duplicates)
-// m -> vector of vectors storing all unique subsets
-void solve(vector<int> nums, vector<int> op, map<vector<int>, bool> &mp, vector<vector<int>> &m)
-{
-    // BASE CASE: if no elements left to process
-    if (nums.size() == 0)
-    {
-        // When nums is empty, current subset 'op' is complete
-        // Check if this subset is already added in map
-        if (!mp[op])
-        {
-            m.push_back(op);    // Add current subset to final result
-            mp[op] = true;      // Mark this subset as added to avoid duplicates
-        }
-        return; // End this recursion branch
-    }
+set<string> st;
 
-    // CREATE TWO OPTIONS FOR CURRENT ELEMENT nums[0]
-    vector<int> op1 = op;     // Option1: DO NOT include nums[0] in subset
-    vector<int> op2 = op;     // Option2: INCLUDE nums[0] in subset
-    op2.push_back(nums[0]);   // Include the first element in op2
+void solve(string ip, string op) {
 
-    // Remove first element from remaining elements
-    nums.erase(nums.begin());
+  // Base case
+  if (ip.length() == 0) {
+    st.insert(op); // store unique subsequence
+    return;
+  }
 
-    // RECURSION: explore both choices
-    solve(nums, op1, mp, m);  // Path where current element is excluded
-    solve(nums, op2, mp, m);  // Path where current element is included
+  // Include
+  string op1 = op;
+  op1.push_back(ip[0]);
+
+  // Exclude
+  string op2 = op;
+
+  // Reduce input
+  ip.erase(ip.begin());
+
+  // Recursive calls
+  solve(ip, op1);
+  solve(ip, op2);
 }
 
-// Function to generate all unique subsets
-vector<vector<int>> uniqueSubsets(vector<int> &nums)
-{
-    // SORT the array to handle duplicates correctly
-    // Sorting ensures subsets like {2,1} and {1,2} are treated the same
-    sort(nums.begin(), nums.end());
+int main() {
 
-    vector<vector<int>> m;     // Stores all unique subsets
-    vector<int> op;            // Current subset being formed
-    map<vector<int>, bool> mp; // Map to track duplicates
+  string ip = "aab";
+  string op = "";
 
-    // Start recursion
-    solve(nums, op, mp, m);
+  solve(ip, op);
 
-    return m; // Return all unique subsets
+  // Print unique subsequences
+  for (auto it : st) {
+    cout << it << endl;
+  }
+
+  return 0;
 }
-
-int main()
-{
-    vector<int> nums = {1, 2, 2}; // Example input with duplicates
-
-    // Generate all unique subsets
-    vector<vector<int>> result = uniqueSubsets(nums);
-
-    // PRINT ALL UNIQUE SUBSETS
-    for (auto v : result)
-    {
-        cout << "{ ";
-        for (auto x : v)
-            cout << x << " "; // Print elements of current subset
-        cout << "}" << endl;
-    }
-
-    return 0;
-}
-
 /*
-WORKING EXPLANATION:
+UNIQUE SUBSEQUENCES (NO DUPLICATES)
 
-1. Start with empty subset: op = {}
-2. For each element in nums, make two choices:
-   a) Exclude the element (op1)
-   b) Include the element (op2)
-3. Remove the element from nums for the next recursion
-4. Call recursion for both choices (binary tree of subsets)
-5. Base case: when nums is empty, the current subset 'op' is complete
-   - Check map to see if subset is already added
-   - If not, push it to result and mark in map
-6. Sorting ensures duplicates are handled correctly
-   - e.g., {2,1} and {1,2} will be treated as same
-7. After recursion finishes, 'm' contains all unique subsets
-8. Final output prints all subsets in sorted order
+Goal:
+Given a string (possibly with duplicate characters),
+print ONLY UNIQUE subsequences.
+
+Example:
+Input:  "aab"
+
+Normal subsequences (with duplicates):
+aab
+aa
+ab
+a
+ab
+a
+b
+""
+
+Unique subsequences:
+aab
+aa
+ab
+a
+b
+""
+
+------------------------------------------------------
+
+APPROACH
+
+We use a SET to automatically remove duplicates.
+
+Why needed?
+Because when input has duplicate characters (like "aab"),
+same subsequence can be generated multiple times.
+
+------------------------------------------------------
+
+LOGIC
+
+Same recursion as before:
+
+At every step:
+1) Include character
+2) Exclude character
+
+But instead of directly printing,
+we insert results into a set.
+
+Set ensures:
+• No duplicate subsequences
+• Automatically sorted (optional benefit)
+
+------------------------------------------------------
+
+TIME COMPLEXITY
+
+O(2^n)
+
+SPACE COMPLEXITY
+
+O(2^n) (due to set storage)
+
+------------------------------------------------------
+
+CODE
 */

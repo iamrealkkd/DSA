@@ -1,48 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// recursive function
-void solve(vector<int> nums, vector<int> op, vector<vector<int>> &m)
-{
-    if (nums.size() == 0)
-    {
-        m.push_back(op);
-        return;
-    }
+void solve(string ip, string op) {
+  // Base case
+  if (ip.length() == 0) {
+    cout << op << endl;
+    return;
+  }
 
-    vector<int> op1 = op;
-    vector<int> op2 = op;
+  // Choice 1: include first character
+  string op1 = op;
+  op1.push_back(ip[0]);
 
-    op2.push_back(nums[0]);
+  // Choice 2: exclude first character
+  string op2 = op;
 
-    nums.erase(nums.begin());
+  // Reduce input
+  ip.erase(ip.begin());
 
-    solve(nums, op1, m);
-    solve(nums, op2, m);
+  // Recursive calls
+  solve(ip, op1); // include
+  solve(ip, op2); // exclude
 }
 
-// function to generate subsets
-vector<vector<int>> subsets(vector<int> &nums)
-{
-    vector<vector<int>> m;
-    vector<int> op;
-    solve(nums, op, m);
-    return m;
-}
+int main() {
+  string ip = "abc";
+  string op = "";
 
-int main()
-{
-    vector<int> nums = {1, 2, 3};
+  solve(ip, op);
 
-    vector<vector<int>> result = subsets(nums);
-
-    for (auto v : result)
-    {
-        cout << "{ ";
-        for (auto x : v)
-            cout << x << " ";
-        cout << "}" << endl;
-    }
-
-    return 0;
+  return 0;
 }

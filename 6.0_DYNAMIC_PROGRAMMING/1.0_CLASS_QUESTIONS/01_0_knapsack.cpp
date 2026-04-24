@@ -36,7 +36,6 @@ int main() {
 
 /*
     0/1 Knapsack Problem (Recursion)
-
     Given:
     wt[]  -> weights of items
     val[] -> values of items

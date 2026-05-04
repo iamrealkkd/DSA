@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int t[102][1002];
-
 int knapsack(int wt[], int val[], int W, int n)
 {
   // Base case
@@ -19,7 +17,7 @@ int knapsack(int wt[], int val[], int W, int n)
   }
   else
   {
-    knapsack(wt, val, W, n - 1);
+    return knapsack(wt, val, W, n - 1);
   }
 }
 

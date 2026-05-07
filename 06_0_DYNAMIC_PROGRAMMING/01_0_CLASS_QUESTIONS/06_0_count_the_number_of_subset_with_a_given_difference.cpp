@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+
 class Solution
 {
 public:
@@ -36,7 +37,17 @@ int main()
 {
     vector<int> arr = {1, 1, 2, 3};
     int diff = 1;
-    int target = diff + accumulate(arr.begin(), arr.end(), 0) / 2;
+
+    int totalSum = accumulate(arr.begin(), arr.end(), 0);
+
+    // Invalid Case
+    if ((totalSum + diff) % 2 != 0)
+    {
+        cout << 0;
+        return 0;
+    }
+
+    int target = (totalSum + diff) / 2;
 
     Solution obj;
     cout << obj.perfectSum(arr, target);

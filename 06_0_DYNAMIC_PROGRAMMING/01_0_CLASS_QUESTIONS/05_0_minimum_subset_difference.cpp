@@ -6,10 +6,10 @@ class Solution
 public:
     int minSubsetSumDiff(vector<int> &arr, int n)
     {
-        int range = 0;
+        int range = accumulate(arr.begin(), arr.end(), 0);
 
-        for (int i = 0; i < n; i++)
-            range += arr[i];
+        // for (int i = 0; i < n; i++)
+        //     range += arr[i];
 
         vector<vector<bool>> t(n + 1, vector<bool>(range + 1));
 

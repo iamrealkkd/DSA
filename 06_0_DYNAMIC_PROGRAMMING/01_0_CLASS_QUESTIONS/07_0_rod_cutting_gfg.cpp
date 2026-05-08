@@ -6,7 +6,6 @@ class Solution
 public:
     int cutRod(vector<int> &price)
     {
-
         int n = price.size();
 
         vector<int> length;

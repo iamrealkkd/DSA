@@ -24,7 +24,6 @@ public:
 
             for (int j = 1; j <= sum; j++)
             {
-
                 if (coins[i - 1] <= j)
                     t[i][j] = t[i][j - coins[i - 1]] + t[i - 1][j];
                 else
@@ -38,7 +37,6 @@ public:
 
 int main()
 {
-
     Solution obj;
 
     vector<int> coins = {1, 2, 3};

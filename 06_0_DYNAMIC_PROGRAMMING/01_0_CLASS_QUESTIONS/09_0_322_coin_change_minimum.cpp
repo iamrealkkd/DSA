@@ -33,9 +33,7 @@ public:
             {
                 if (coins[i - 1] <= j)
                 {
-                    t[i][j] = min(
-                        1 + t[i][j - coins[i - 1]],
-                        t[i - 1][j]);
+                    t[i][j] = min(1 + t[i][j - coins[i - 1]], t[i - 1][j]);
                 }
                 else
                 {

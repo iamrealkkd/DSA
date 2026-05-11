@@ -5,17 +5,17 @@ class Solution
 {
 public:
     // Recursive LCS Function
-    int longestCommonSubsequence(string x, string y, int n, int m)
+    int longestCommonSubsequence(string x, string y, int m, int n)
     {
         vector<vector<int>> t(m + 1, vector<int>(n + 1, -1));
 
         // Base Case
-        if (n == 0 || m == 0)
+        if (m == 0 || n == 0)
             return 0;
         if (t[m][n] != -1)
             return t[m][n];
         // If characters match
-        if (x[n - 1] == y[m - 1])
+        if (x[m - 1] == y[n - 1])
             return t[m][n] = 1 + longestCommonSubsequence(x, y, n - 1, m - 1);
 
         // If characters do not match

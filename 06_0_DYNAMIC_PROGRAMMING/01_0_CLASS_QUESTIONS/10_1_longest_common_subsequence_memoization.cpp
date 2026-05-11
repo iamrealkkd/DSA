@@ -16,12 +16,12 @@ public:
             return t[m][n];
         // If characters match
         if (x[m - 1] == y[n - 1])
-            return t[m][n] = 1 + longestCommonSubsequence(x, y, n - 1, m - 1);
+            return t[m][n] = 1 + longestCommonSubsequence(x, y, m - 1, n - 1);
 
         // If characters do not match
         return t[m][n] = max(
-                   longestCommonSubsequence(x, y, n, m - 1),
-                   longestCommonSubsequence(x, y, n - 1, m));
+                   longestCommonSubsequence(x, y, m, n - 1),
+                   longestCommonSubsequence(x, y, m - 1, n));
     }
 };
 

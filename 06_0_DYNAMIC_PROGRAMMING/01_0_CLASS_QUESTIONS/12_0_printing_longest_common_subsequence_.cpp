@@ -41,7 +41,6 @@ public:
             if (x[i - 1] == y[j - 1])
             {
                 s.push_back(x[i - 1]);
-                ;
                 i--;
                 j--;
             }

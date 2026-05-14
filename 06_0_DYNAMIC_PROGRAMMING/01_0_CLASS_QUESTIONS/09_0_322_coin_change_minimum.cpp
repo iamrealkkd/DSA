@@ -14,7 +14,7 @@ public:
         for (int i = 0; i <= n; i++)
             t[i][0] = 0;
 
-        for (int j = 1; j <= sum; j++)
+        for (int j = 0; j <= sum; j++)
             t[0][j] = INT_MAX - 1;
 
         // Second row initialization

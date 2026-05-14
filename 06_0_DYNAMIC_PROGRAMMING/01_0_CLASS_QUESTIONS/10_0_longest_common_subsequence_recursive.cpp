@@ -18,8 +18,8 @@ public:
 
         // If characters do not match
         return max(
-            longestCommonSubsequence(x, y, n, m - 1),
-            longestCommonSubsequence(x, y, n - 1, m));
+            longestCommonSubsequence(x, y, n - 1, m),
+            longestCommonSubsequence(x, y, n, m - 1));
     }
 };
 

@@ -9,6 +9,9 @@ bool solve(string a, string b)
 
     if(a.length() <= 1)
         return false;
+    
+    if(a.length() && b.length() == 0)
+        return true;
 
     int n = a.length();
 

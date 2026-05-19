@@ -4,8 +4,7 @@ using namespace std;
 class Solution {
 public:
 
-    vector<vector<int>> t =
-        vector<vector<int>>(101, vector<int>(10001, -1));
+    vector<vector<int>>t{101, vector<int>(10001, -1)};
 
     int solve(int e, int f)
     {

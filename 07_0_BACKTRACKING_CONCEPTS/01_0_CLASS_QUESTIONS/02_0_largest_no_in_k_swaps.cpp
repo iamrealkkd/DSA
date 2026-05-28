@@ -36,7 +36,8 @@ public:
         solve(s, k, res, start + 1);
     }
 
-    string findMaximumNum(string s, int k) {
+    // Function to find the largest number after k swaps.
+    string findMaximumNum(string& s, int k) {
 
         string res = s;
 

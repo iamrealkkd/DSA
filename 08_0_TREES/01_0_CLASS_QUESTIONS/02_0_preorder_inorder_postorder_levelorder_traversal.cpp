@@ -31,48 +31,46 @@ Node* buildTree(vector<int> preorder){
 }
 //preorder
 void preOrder(Node* root){
-if(root == NULL) return;
-cout << root -> data << " ";
-preOrder(root -> left);
-preOrder(root -> right);
-
+    if(root == NULL) return;
+      cout << root -> data << " ";
+      preOrder(root -> left);
+      preOrder(root -> right);
 }
 
 //inorder
 void inOrder(Node* root){
-if(root == NULL) return;
-inOrder(root -> left);
-cout << root -> data << " ";
-inOrder(root -> right);
-
+    if(root == NULL) return;
+      inOrder(root -> left);
+      cout << root -> data << " ";
+      inOrder(root -> right);
 }
 
 //postorder
 void postOrder(Node* root){
-if(root == NULL) return;
-postOrder(root -> left);
-postOrder(root -> right);
-cout << root -> data << " ";
+    if(root == NULL) return;
+       postOrder(root -> left);
+       postOrder(root -> right);
+       cout << root -> data << " ";
 
 }
 
 //levelorder
 void levelOrder(Node* root){
-queue<Node*> q;
-q.push(root);
-q.push(NULL);
+    queue<Node*> q;
+    q.push(root);
+    q.push(NULL);
 
-while(q.size() > 0){
-Node* curr = q.front();
-q.pop();
+    while(q.size() > 0){
+        Node* curr = q.front();
+        q.pop();
 
-if(curr == NULL){
-    if(!q.empty()){
-     cout << endl;
-     q.push(NULL);
-     continue;
-    }else{
-       break;
+        if(curr == NULL){
+          if(!q.empty()){
+          cout << endl;
+          q.push(NULL);
+          continue;
+        }else{
+          break;
     }
 }
 
@@ -84,8 +82,8 @@ if(curr -> left != NULL){
 
 if(curr -> right != NULL){
     q.push(curr -> right);
-}
-}
+   }
+ }
 
 }
 

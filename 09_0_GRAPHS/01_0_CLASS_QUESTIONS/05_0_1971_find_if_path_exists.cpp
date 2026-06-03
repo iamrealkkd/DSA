@@ -1,18 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void dfs(int node,
-         unordered_map<int, vector<int>>& graph,
-         vector<int>& visited) {
+class Solution {
+public:
 
-    visited[node] = 1;
+    void dfs(int node,
+             unordered_map<int, vector<int>>& graph,
+             vector<int>& visited) {
 
-    for (int nbr : graph[node]) {
-        if (!visited[nbr]) {
-            dfs(nbr, graph, visited);
+        visited[node] = 1;
+
+        for (int nbr : graph[node]) {
+            if (!visited[nbr]) {
+                dfs(nbr, graph, visited);
+            }
         }
     }
-}
+
+    bool validPath(int n,
+                   vector<vector<int>>& edges,
+                   int source,
+                   int destination) {
+
+        unordered_map<int, vector<int>> graph;
+
+        for (auto &e : edges) {
+            int a = e[0];
+            int b = e[1];
+
+            graph[a].push_back(b);
+            graph[b].push_back(a);
+        }
+
+        vector<int> visited(n, 0);
+
+        dfs(source, graph, visited);
+
+        return visited[destination];
+    }
+};
 
 int main() {
 
@@ -27,26 +53,9 @@ int main() {
     int source = 0;
     int destination = 2;
 
-    unordered_map<int, vector<int>> graph;
+    Solution obj;
 
-    // Build graph
-    for (auto &e : edges) {
-        int a = e[0];
-        int b = e[1];
-
-        graph[a].push_back(b);
-        graph[b].push_back(a);
-    }
-
-    vector<int> visited(n, 0);
-
-    dfs(source, graph, visited);
-
-    bool ans = visited[destination];
-
-    cout << "Path Exists: "
-         << (ans ? "true" : "false")
-         << endl;
+    cout << obj.validPath(n, edges, source, destination);
 
     return 0;
 }

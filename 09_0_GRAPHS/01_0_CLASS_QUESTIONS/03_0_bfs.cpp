@@ -1,9 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void bfs(int source,
-         unordered_map<int, vector<int>> graph,
-         int n) {
+void bfs(int source, unordered_map<int, vector<int>> graph, int n) {
 
     queue<int> q;
     vector<int> visited(n + 1);

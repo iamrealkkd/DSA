@@ -3,13 +3,14 @@ using namespace std;
 
 void print_graph(vector<vector<int>> adjacencyMatrix) {
     for (int i = 1; i <= 4; i++) {
-        cout << "Node: " << i << "  Neighbors: ";
+        cout << "Node: " << i << ", Neighbors: ";
 
         for (int j = 1; j <= 4; j++) {
             if (adjacencyMatrix[i][j] == 1) {
                 cout << j << " ";
             }
         }
+
         cout << endl;
     }
 }
@@ -24,14 +25,14 @@ int main() {
         {1, 3}
     };
 
-    int n = 5;
+    int V = 4;
 
-    vector<vector<int>> adjacencyMatrix(n, vector<int>(n, 0));
+    vector<vector<int>> adjacencyMatrix(V + 1,
+                                        vector<int>(V + 1, 0));
 
     for (int i = 0; i < edgeList.size(); i++) {
 
-        // Undirected Graph
-        //a do lines edgeList ke andar stored edge ke dono nodes nikal rahi hain.
+        // Undirected graph
         int a = edgeList[i][0];
         int b = edgeList[i][1];
 

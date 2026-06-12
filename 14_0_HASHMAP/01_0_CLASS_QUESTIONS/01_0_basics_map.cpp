@@ -28,7 +28,7 @@ int main(){
     cout <<  m["rathore"] << endl;//Output is 5
     cout <<  m.at("krishna") << endl;//Output is 1
     // cout <<  m.at("kkd") << endl; Output is key not found as it not existed
-    cout <<  m["kkd"] << endl;//Output is 0, iskay coreesponding ek value bn jayegi 0
+    cout <<  m["kkd"] << endl;//Output is 0, iskay corresponding ek value bn jayegi 0
     cout <<  m.at("kkd") << endl;//ab dono 0 de diye pehle 0 nahi de rha the, because ab value 0 ban chuki hai
 
     //size

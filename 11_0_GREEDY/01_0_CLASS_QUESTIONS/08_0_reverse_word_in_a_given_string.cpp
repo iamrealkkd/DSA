@@ -10,15 +10,17 @@ public:
         for (int i = S.length() - 1; i >= 0; i--) {
             if (S[i] == '.') {
                 reverse(temp.begin(), temp.end());
-                ans  = ans + temp + '.';  // <-- add '.' back
+                if (ans != "") ans = ans + '.';  // dot only between words
+                ans  = ans + temp;
                 temp = "";
             } else {
                 temp.push_back(S[i]);
             }
         }
 
-        // last word — no dot after it
+        // last word
         reverse(temp.begin(), temp.end());
+        if (ans != "") ans = ans + '.';
         ans = ans + temp;
 
         return ans;

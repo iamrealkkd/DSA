@@ -35,6 +35,27 @@ int main()
 
     return 0;
 }
+// solve("AB","")
+// │
+// ├── solve("B","a")
+// │   │
+// │   ├── solve("","ab")
+// │   │      print ab
+// │   │      return ↑
+// │   │
+// │   └── solve("","aB")
+// │          print aB
+// │          return ↑
+// │
+// └── solve("B","A")
+//     │
+//     ├── solve("","Ab")
+//     │      print Ab
+//     │      return ↑
+//     │
+//     └── solve("","AB")
+//            print AB
+//            return ↑
 /*
 PROBLEM: PRINT ALL CASE PERMUTATIONS OF A STRING
 

@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node {
+    Node* links[26];
+    bool containsKey(char ch) {
+        return links[ch - 'a'] != nullptr;
+    }
+    void put(char ch, Node* node) {
+        links[ch - 'a'] = node;
+    }
+    Node* get(char ch) {
+        return links[ch - 'a'];
+    }
+    Node() {
+        fill(links, links + 26, nullptr);
+    }
+};
+
+class Solution {
+public:
+    int countSubs(string s) {
+        int cnt = 0;
+        Node* root = new Node();
+
+        for (int i = 0; i < s.size(); i++) {
+            Node* node = root;
+            for (int j = i; j < s.size(); j++) {
+                if (!node->containsKey(s[j])) {
+                    node->put(s[j], new Node());
+                    cnt++;
+                }
+                node = node->get(s[j]);
+            }
+        }
+
+        return cnt;
+    }
+};
+
+int main() {
+    Solution ob;
+
+    string s1 = "abab";
+    cout << ob.countSubs(s1) << endl; // 7
+
+    return 0;
+}

@@ -79,7 +79,6 @@ int main() {
     vector<int> arr2 = {5, 9, 3};
     int n = arr1.size(), m = arr2.size();
     cout << maxXOR(n, m, arr1, arr2) << endl; // 15
-
     
     return 0;
 }

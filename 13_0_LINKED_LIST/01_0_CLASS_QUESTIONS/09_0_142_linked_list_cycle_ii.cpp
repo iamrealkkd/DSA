@@ -39,6 +39,7 @@ public:
         // ListNode* prev = NULL; for remove cycle
         while (slow != fast) {
             slow = slow->next;
+            // prev = fast;
             fast = fast->next;
         }
         // prev -> next = NULL; for remove cycle

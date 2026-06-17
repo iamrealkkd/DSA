@@ -36,12 +36,12 @@ public:
 
         // Find start of cycle
         slow = head;
-
+        // ListNode* prev = NULL; for remove cycle
         while (slow != fast) {
             slow = slow->next;
             fast = fast->next;
         }
-
+        // prev -> next = NULL; for remove cycle
         return slow;
     }
 };

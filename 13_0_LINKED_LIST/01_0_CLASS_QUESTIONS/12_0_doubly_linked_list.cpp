@@ -48,6 +48,46 @@ public:
         tail = newNode;
     }
 
+    void pop_front() {
+        if (head == NULL) {
+            cout << "List is empty\n";
+            return;
+        }
+
+        Node* temp = head;
+
+        // Single node
+        if (head == tail) {
+            head = tail = NULL;
+        }
+        else {
+            head = head->next;
+            head->prev = NULL;
+        }
+
+        delete temp;
+    }
+
+    void pop_back() {
+        if (head == NULL) {
+            cout << "List is empty\n";
+            return;
+        }
+
+        Node* temp = tail;
+
+        // Single node
+        if (head == tail) {
+            head = tail = NULL;
+        }
+        else {
+            tail = tail->prev;
+            tail->next = NULL;
+        }
+
+        delete temp;
+    }
+
     void printForward() {
         Node* temp = head;
 
@@ -81,11 +121,18 @@ int main() {
     dll.push_back(30);
     dll.push_back(40);
 
-    cout << "Forward Traversal:\n";
+    cout << "Original List:\n";
     dll.printForward();
 
-    cout << "\nBackward Traversal:\n";
-    dll.printBackward();
+    dll.pop_front();
+
+    cout << "\nAfter pop_front():\n";
+    dll.printForward();
+
+    dll.pop_back();
+
+    cout << "\nAfter pop_back():\n";
+    dll.printForward();
 
     return 0;
 }

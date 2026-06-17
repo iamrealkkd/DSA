@@ -1,21 +1,41 @@
 #include <iostream>
 using namespace std;
 
-// Definition for singly-linked list
-struct ListNode {
-    int val;
-    ListNode* next;
+class Node {
+public:
+    int data;
+    Node* next;
 
-    ListNode() : val(0), next(nullptr) {}
-    ListNode(int x) : val(x), next(nullptr) {}
-    ListNode(int x, ListNode* next) : val(x), next(next) {}
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
 };
 
-class Solution {
+class List {
+    Node* head;
+    Node* tail;
+
 public:
-    ListNode* middleNode(ListNode* head) {
-        ListNode* slow = head;
-        ListNode* fast = slow;
+    List() {
+        head = tail = NULL;
+    }
+
+    void push_front(int val) {
+        Node* newNode = new Node(val);
+
+        if (head == NULL) {
+            head = tail = newNode;
+            return;
+        }
+
+        newNode->next = head;
+        head = newNode;
+    }
+
+    Node* middleNode() {
+        Node* slow = head;
+        Node* fast = head;
 
         while (fast != NULL && fast->next != NULL) {
             slow = slow->next;
@@ -24,31 +44,32 @@ public:
 
         return slow;
     }
+
+    void printLL() {
+        Node* temp = head;
+
+        while (temp != NULL) {
+            cout << temp->data << " -> ";
+            temp = temp->next;
+        }
+
+        cout << "NULL" << endl;
+    }
 };
 
-// Function to print linked list
-void printList(ListNode* head) {
-    while (head != NULL) {
-        cout << head->val;
-        if (head->next != NULL)
-            cout << " -> ";
-        head = head->next;
-    }
-    cout << endl;
-}
-
 int main() {
-    // Creating linked list: 1 -> 2 -> 3 -> 4 -> 5
-    ListNode* head = new ListNode(1);
-    head->next = new ListNode(2);
-    head->next->next = new ListNode(3);
-    head->next->next->next = new ListNode(4);
-    head->next->next->next->next = new ListNode(5);
 
-    Solution obj;
-    ListNode* middle = obj.middleNode(head);
+    List ll;
 
-    cout << middle->val << endl;
+    ll.push_front(1);
+    ll.push_front(2);
+    ll.push_front(3);
+    ll.push_front(4);
+    ll.push_front(5);
+
+    Node* middle = ll.middleNode();
+
+    cout << middle->data << endl;
 
     return 0;
 }

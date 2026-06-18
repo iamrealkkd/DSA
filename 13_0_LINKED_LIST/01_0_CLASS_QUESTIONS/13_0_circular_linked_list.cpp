@@ -48,16 +48,16 @@ public:
     }
 
     void print() {
-        if (head == NULL) return;
+    if (head == NULL) return;
 
-        Node* temp = head;
-        do {
-            cout << temp->data;
-            temp = temp->next;
-            if (temp != head) cout << "->";
-        } while (temp != head);
-        cout << endl;
-    }
+    Node* temp = head;
+    do {
+        cout << temp->data << "->";
+        temp = temp->next;
+    } while (temp != head);
+
+    cout << head->data << "(head)" << endl;
+}
 };
 
 int main() {

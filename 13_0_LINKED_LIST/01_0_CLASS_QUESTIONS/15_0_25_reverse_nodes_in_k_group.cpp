@@ -71,3 +71,21 @@ int main() {
 
     return 0;
 }
+/*
+TC = O(N)
+
+Every node is visited exactly once during reversal.
+
+SC = O(N/k)
+
+Recursion depth = Number of groups
+
+If N nodes and each group size = k
+
+Total recursive calls = N/k
+
+Worst Case:
+k = 1
+
+SC = O(N)
+*/

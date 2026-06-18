@@ -84,3 +84,12 @@ int main() {
 
     return 0;
 }
+// Time Complexity: O(N)
+// Each node is visited and processed once
+
+// Space Complexity: O(D)
+// D = Maximum child depth (recursion stack)
+// Worst Case: O(N) when every node has a child
+
+// Auxiliary Space: O(D)
+// Due to recursive function calls

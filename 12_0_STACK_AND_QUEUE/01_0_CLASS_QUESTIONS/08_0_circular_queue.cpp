@@ -12,6 +12,7 @@ public:
         arr = new int[cap];
         f = 0;
         r = -1;
+        currSize = 0;
     }
 
     void push(int data) {
@@ -46,6 +47,13 @@ public:
     bool empty() { // O(1)
         return currSize == 0;
     }
+
+    void printArr() {
+        for (int i = 0; i < cap; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
 };
 
 int main() {
@@ -54,16 +62,9 @@ int main() {
     cq.push(1);
     cq.push(2);
     cq.push(3);
-    cq.push(4); // CQ is FULL (cap = 3)
-
-    cout << cq.front() << endl; // 1
     cq.pop();
-    cout << cq.front() << endl; // 2
+    cq.push(4);
 
-    cq.push(5); // wraps around, reuses freed slot
-    cq.pop();
-    cq.pop();
-    cout << cq.front() << endl; // 5
-
+    cq.printArr();
     return 0;
 }

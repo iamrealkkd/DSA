@@ -19,7 +19,6 @@ void permute(string ip, string op, vector<string> &v) {
         if(mp.find(ip[i]) == mp.end()) {
 
             mp.insert(ip[i]);
-
             string newIP = ip.substr(0, i) + ip.substr(i + 1);
             string newOP = op + ip[i];
 

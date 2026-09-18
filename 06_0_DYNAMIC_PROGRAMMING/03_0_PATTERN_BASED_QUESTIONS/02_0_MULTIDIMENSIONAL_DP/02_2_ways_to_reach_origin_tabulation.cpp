@@ -5,7 +5,7 @@ using namespace std;
 const int MOD = 1000000007;
 
 int ways(int x, int y) {
-  vector<vector<int>> dp(x + 1, vector<int>(y + 1, 0));
+  vector<vector<int>> dp(x + 1, vector<int>(y + 1, -1));
 
   // dp[0][0] = 1;
 

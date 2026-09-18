@@ -7,7 +7,7 @@ const int MOD = 1000000007;
 int ways(int x, int y) {
   vector<vector<int>> dp(x + 1, vector<int>(y + 1, 0));
 
-  dp[0][0] = 1;
+  // dp[0][0] = 1;
 
   for (int i = 1; i <= x; i++)
     dp[i][0] = 1;

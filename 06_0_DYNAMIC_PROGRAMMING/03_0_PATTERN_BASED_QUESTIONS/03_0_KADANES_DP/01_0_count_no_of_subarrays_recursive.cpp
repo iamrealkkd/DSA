@@ -13,6 +13,7 @@ int recursion(const vector<int> &nums, int i, bool prevPick) {
 
   // Case 1: Agar pichla element pick ho chuka hai (Continuous Subarray
   // continuation)
+  // continuation)
   if (prevPick) {
     int pickInSubarr =
         recursion(nums, i + 1, true); // Continue subarray with next element

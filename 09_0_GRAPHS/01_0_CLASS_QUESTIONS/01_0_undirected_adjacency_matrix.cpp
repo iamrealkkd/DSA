@@ -36,7 +36,7 @@ int main() {
         int b = edgeList[i][1];
 
         adjacencyMatrix[a][b] = 1;
-        adjacencyMatrix[b][a] = 1;
+        adjacencyMatrix[b][a] = 1;//remove one line for directed
     }
 
     print_graph(adjacencyMatrix);

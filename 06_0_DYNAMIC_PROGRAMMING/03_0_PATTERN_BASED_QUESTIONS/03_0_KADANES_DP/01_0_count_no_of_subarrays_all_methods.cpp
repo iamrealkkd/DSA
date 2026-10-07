@@ -1,159 +1,73 @@
-// Code to find the total number of non-empty subarrays ~ coded by vHiren
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
-class TopDown {
-  int n;
+int recursion(vector<int> &nums, int i, bool prevPick, int n) {
+  if (i == n)
+    return prevPick;
 
-  // O(2^N) & O(N)
-  int solveWithoutMemo(const vector<int> &nums, int i, bool prevPick) {
-    if (i == n)
-      return prevPick;
-
-    if (prevPick) {
-      int pickInSubarr = solveWithoutMemo(nums, i + 1, true);
-      int stopHere = prevPick;
-      return (pickInSubarr + stopHere);
-    } else {
-      int startNewFromNext = solveWithoutMemo(nums, i + 1, false);
-      int startNewFromCurr = solveWithoutMemo(nums, i + 1, true);
-      return (startNewFromNext + startNewFromCurr);
-    }
+  if (prevPick) {
+    int pick = recursion(nums, i + 1, true, n);
+    int stop = 1;
+    return pick + stop;
   }
 
-  // O(2*N*2) & O(2*N)
-  int solveWithMemo(vector<vector<int>> &dp, const vector<int> &nums, int i,
-                    bool prevPick) {
-    if (i == n)
-      return prevPick;
+  int skip = recursion(nums, i + 1, false, n);
+  int start = recursion(nums, i + 1, true, n);
 
-    if (dp[i][prevPick] != -1)
-      return dp[i][prevPick];
+  return skip + start;
+}
 
-    if (prevPick) {
-      int pickInSubarr = solveWithMemo(dp, nums, i + 1, true);
-      int stopHere = prevPick;
-      return dp[i][prevPick] = (pickInSubarr + stopHere);
-    } else {
-      int startNewFromNext = solveWithMemo(dp, nums, i + 1, false);
-      int startNewFromCurr = solveWithMemo(dp, nums, i + 1, true);
-      return dp[i][prevPick] = (startNewFromNext + startNewFromCurr);
-    }
+int memoization(vector<vector<int>> &dp, int i, bool prevPick, int n) {
+  if (i == n)
+    return prevPick;
+
+  if (dp[i][prevPick] != -1)
+    return dp[i][prevPick];
+
+  if (prevPick) {
+    int pick = memoization(dp, i + 1, true, n);
+    int stop = 1;
+
+    return dp[i][prevPick] = pick + stop;
   }
 
-public:
-  // Method to count total number of subarrays, using recursion with memoization
-  // - O(N) & O(N)
-  int countSubarrays(vector<int> &nums) {
-    n = nums.size();
-    vector<vector<int>> dp(n, vector<int>(2, -1));
-    return solveWithMemo(dp, nums, 0, false);
-  }
-};
+  int skip = memoization(dp, i + 1, false, n);
+  int start = memoization(dp, i + 1, true, n);
 
-class BottomUp {
-  int n;
+  return dp[i][prevPick] = skip + start;
+}
 
-  // O(N*2) & O(N*2)
-  int solveWith2DTable(const vector<int> &nums) {
-    vector<vector<int>> dp(n + 1, vector<int>(2, -1));
-    dp[n][true] = 1;
-    dp[n][false] = 0;
+int tabulation(vector<int> &nums) {
+  int n = nums.size();
 
-    for (int i = n - 1; i >= 0; --i) {
-      for (int prevPick = 1; prevPick >= 0; --prevPick) {
-        if (prevPick) {
-          int pickInSubarr = dp[i + 1][true];
-          int stopHere = prevPick;
-          dp[i][prevPick] = (pickInSubarr + stopHere);
-        } else {
-          int startNewFromNext = dp[i + 1][false];
-          int startNewFromCurr = dp[i + 1][true];
-          dp[i][prevPick] = (startNewFromNext + startNewFromCurr);
-        }
-      }
-    }
+  vector<vector<int>> dp(n + 1, vector<int>(2));
 
-    return dp[0][false];
+  dp[n][1] = 1;
+  dp[n][0] = 0;
+
+  for (int i = n - 1; i >= 0; i--) {
+    dp[i][1] = dp[i + 1][1] + 1;
+    dp[i][0] = dp[i + 1][0] + dp[i + 1][1];
   }
 
-  // O(N*2) & O(2*2)
-  int solveWith1DTable(const vector<int> &nums) {
-    vector<int> nextRow(2, -1);
-    nextRow[true] = 1;
-    nextRow[false] = 0;
+  return dp[0][0];
+}
 
-    for (int i = n - 1; i >= 0; --i) {
-      vector<int> currRow(2, -1);
-
-      for (int prevPick = 1; prevPick >= 0; --prevPick) {
-        if (prevPick) {
-          int pickInSubarr = nextRow[true];
-          int stopHere = prevPick;
-          currRow[prevPick] = (pickInSubarr + stopHere);
-        } else {
-          int startNewFromNext = nextRow[false];
-          int startNewFromCurr = nextRow[true];
-          currRow[prevPick] = (startNewFromNext + startNewFromCurr);
-        }
-      }
-
-      swap(nextRow, currRow);
-    }
-
-    return nextRow[false];
-  }
-
-  // O(N*2) & O(1)
-  int solveWithoutTable(const vector<int> &nums) {
-    ;
-    int nextRow_1 = 1;
-    int nextRow_0 = 0;
-
-    for (int i = n - 1; i >= 0; --i) {
-      int currRow_1 = -1;
-      int currRow_0 = -1;
-
-      for (int prevPick = 1; prevPick >= 0; --prevPick) {
-        if (prevPick) {
-          int pickInSubarr = nextRow_1;
-          int stopHere = prevPick;
-          currRow_1 = (pickInSubarr + stopHere);
-        } else {
-          int startNewFromNext = nextRow_0;
-          int startNewFromCurr = nextRow_1;
-          currRow_0 = (startNewFromNext + startNewFromCurr);
-        }
-      }
-
-      swap(nextRow_0, currRow_0);
-      swap(nextRow_1, currRow_1);
-    }
-
-    return nextRow_0;
-  }
-
-public:
-  int countSubarrays(vector<int> &nums) {
-    n = nums.size();
-    return solveWithoutTable(nums);
-  }
-};
-
-// Driver code
 int main() {
-  ios_base::sync_with_stdio(NULL);
+  ios::sync_with_stdio(false);
   cin.tie(nullptr);
 
   vector<int> nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-  cout << "From Formula: " << nums.size() * (nums.size() + 1) / 2 << '\n';
 
-  TopDown td;
-  cout << "From Memoization: " << td.countSubarrays(nums) << '\n';
+  int n = nums.size();
 
-  BottomUp bu;
-  cout << "From Bottom Up: " << bu.countSubarrays(nums);
+  cout << "Recursion: " << recursion(nums, 0, false, n) << '\n';
+
+  vector<vector<int>> dp(n, vector<int>(2, -1));
+
+  cout << "Memoization: " << memoization(dp, 0, false, n) << '\n';
+
+  cout << "Tabulation: " << tabulation(nums) << '\n';
 
   return 0;
 }

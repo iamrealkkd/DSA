@@ -1,40 +1,27 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void print_graph(vector<vector<int>> &adjacencyList, int V) {
-
-  for (int i = 1; i <= V; i++) {
-
-    cout << "Node: " << i << ", Neighbors: ";
-
-    for (int j = 0; j < adjacencyList[i].size(); j++) {
-      cout << adjacencyList[i][j] << " ";
+void print_graph(unordered_map<int, vector<int>> graph) {
+  for (auto x : graph) {
+    cout << "Node: " << x.first << ", Neighbors: ";
+    for (int node : x.second) {
+      cout << node << " ";
     }
-
     cout << endl;
   }
 }
 
 int main() {
-
   vector<vector<int>> edgeList = {{1, 2}, {2, 3}, {3, 4}, {4, 2}, {1, 3}};
-
-  int V = 4;
-
-  // Har node ke liye neighbors ki ek list
-  vector<vector<int>> adjacencyList(V + 1);
-
+  unordered_map<int, vector<int>> graph;
   for (int i = 0; i < edgeList.size(); i++) {
-
-    int a = edgeList[i][0];
-    int b = edgeList[i][1];
-
-    // Undirected graph
-    adjacencyList[a].push_back(b);
-    adjacencyList[b].push_back(a);
+    // un-directed graph
+    int a = edgeList[i][0], b = edgeList[i][1];
+    graph[a].push_back(b);
+    graph[b].push_back(a);
   }
 
-  print_graph(adjacencyList, V);
+  print_graph(graph);
 
   return 0;
 }
